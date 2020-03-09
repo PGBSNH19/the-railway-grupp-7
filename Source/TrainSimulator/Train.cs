@@ -12,17 +12,18 @@ namespace TrainSimulator
         public int MaxSpeed { get; set; }
         public bool Operated { get; set; }
 
+         string[] TrainFilePath = File.ReadAllLines("trains.txt");
         public Train LoadTrain()
         {
-         string[] TrainFilePath = File.ReadAllLines("trains.txt");
-
             foreach (string line in TrainFilePath)
             {
                 string[] parts = line.Split(',');
-                int id = int.Parse(parts[0]);
+                        
                 
             }
+            
             return this;
         }
+       
     }
 }
