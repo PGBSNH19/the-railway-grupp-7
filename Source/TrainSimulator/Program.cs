@@ -16,8 +16,8 @@ namespace TrainSimulator
             var tid = new Schedule(tidtabell);
             var train = new Train(trains);
             var station = new Station(stations);
-            var time = new TimeSpan(10, 20, 00);
-            var addMin = TimeSpan.FromMinutes(01);
+            var time = new TimeSpan(10, 19, 00);
+            var addMinute = TimeSpan.FromMinutes(01);
 
 
             for (int i = 0; i <= 40; i++)
@@ -35,7 +35,7 @@ namespace TrainSimulator
                     Console.WriteLine(time.ToString());
                 }
 
-                time += addMin;
+                time += addMinute;
                 System.Threading.Thread.Sleep(500);
 
             }
@@ -51,11 +51,12 @@ namespace TrainSimulator
 
         public Schedule(string[] scheduleArray)
         {
-            string[] convert = scheduleArray[1].Split(",");
-            traindId = int.Parse(convert[0]);
-            stationId = int.Parse(convert[1]);
-            departureTime = TimeSpan.Parse(convert[2]);
-            arrivalTime = TimeSpan.Parse(convert[3]);
+            string[] train2 = scheduleArray[1].Split(",");
+            traindId = int.Parse(train2[0]);
+            stationId = int.Parse(train2[1]);
+            departureTime = TimeSpan.Parse(train2[2]);
+            arrivalTime = TimeSpan.Parse(train2[3]);
+
 
         }
     }

@@ -6,5 +6,8 @@ namespace TrainSimulator
 {
     class Crossing
     {
+
+   
+
     }
 }
