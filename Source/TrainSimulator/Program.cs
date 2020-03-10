@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace TrainSimulator
 {
@@ -18,25 +19,56 @@ namespace TrainSimulator
             //var tid = new Schedule(tidtabell);
             //var train = new Train(trains);
             //var station = new Station(stations);
-            var time = new TimeSpan(10, 19, 00);
-            time.ToString(@"hh\:mm");
-            var addMinute = TimeSpan.FromMinutes(01);
 
-            var tid = schedules[0].DepartureTime + ":00";
+
+
+            Thread t = new Thread(Print1);
+            t.Start();
+
+            for (int i = 0; i < 20; i++)
+            {
+                Thread.Sleep(trains[0].MaxSpeed + 1000);
+
+                Console.WriteLine(trains[0].MaxSpeed);
+                if (schedules[0].DepartureTime == "10:59")
+                {
+                    t.Abort();
+                    Console.WriteLine(trains[0].Name + " tåget har anlänt på stationen: " + stations[0].StationName);
+                    
+                }
+            }
+
+            Console.ReadLine();
+
+            void Print1()
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    
+                    Thread.Sleep(trains[2].MaxSpeed + 1000);
+                    Console.WriteLine(trains[1].MaxSpeed);
+                }
+            }
+
+
+            var time = new timespan(10, 19, 00);
+            var addminute = timespan.fromminutes(01);
+
+            var tid = schedules[0].departuretime + ":00";
 
             for (int i = 0; i <= 60; i++)
             {
-                if(time.ToString() == tid)
+                if (time.tostring() == tid)
                 {
-                    Console.WriteLine(tid + " nu startar tåget");
+                    console.writeline(tid + " nu startar tåget");
                 }
                 else
                 {
-                    Console.WriteLine(time.ToString());
+                    console.writeline(time.tostring());
                 }
 
-                time += addMinute;
-                System.Threading.Thread.Sleep(500);
+                time += addminute;
+                system.threading.thread.sleep(500);
             }
 
 
