@@ -12,16 +12,34 @@ namespace TrainSimulator
             List <Train> trains = Train.GetTrains();
             List <Schedule> schedules = Schedule.GetSchedule();
             List <Station> stations = Station.GetStation();
-            List <Passenger> passengers = Passenger.GetPassenger();
+            //List <Passenger> passengers = Passenger.GetPassenger();
 
 
             //var tid = new Schedule(tidtabell);
             //var train = new Train(trains);
             //var station = new Station(stations);
             var time = new TimeSpan(10, 19, 00);
+            time.ToString(@"hh\:mm");
             var addMinute = TimeSpan.FromMinutes(01);
 
-            
+            var tid = schedules[0].DepartureTime + ":00";
+
+            for (int i = 0; i <= 60; i++)
+            {
+                if(time.ToString() == tid)
+                {
+                    Console.WriteLine(tid + " nu startar tåget");
+                }
+                else
+                {
+                    Console.WriteLine(time.ToString());
+                }
+
+                time += addMinute;
+                System.Threading.Thread.Sleep(500);
+            }
+
+
 
             //    for (int i = 0; i <= 40; i++)
             //    {
