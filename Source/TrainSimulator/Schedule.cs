@@ -25,10 +25,10 @@ namespace TrainSimulator
 
         }
 
-        public static void GetSchedule()
+        public static List<Schedule> GetSchedule()
         {
             string line;
-            List<object> listOfSchedules = new List<object>();
+            List<Schedule> listOfSchedules = new List<Schedule>();
             StreamReader file =
                 new StreamReader(@"timetable.txt");
             file.ReadLine();
@@ -39,7 +39,7 @@ namespace TrainSimulator
             }
 
             file.Close();
-
+            return listOfSchedules;
         }
     }
 }

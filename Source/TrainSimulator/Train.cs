@@ -21,11 +21,11 @@ namespace TrainSimulator
 
         }
 
-       public static void GetTrains()
+       public static List<Train> GetTrains()
         {
 
             string line;
-            List<object> listOfTrains = new List<object>();
+            List<Train> listOfTrains = new List<Train>();
             StreamReader file =
                 new StreamReader(@"trains.txt");
             file.ReadLine();
@@ -36,6 +36,7 @@ namespace TrainSimulator
             }
 
             file.Close();
+            return listOfTrains;
         }
     }
 }

@@ -20,11 +20,11 @@ namespace TrainSimulator
 
         }
 
-        public static void GetStation()
+        public static List<Station> GetStation()
         {
 
             string line;
-            List<object> listOfTrains = new List<object>();
+            List<Station> listOfStations = new List<Station>();
             StreamReader file =
                 new StreamReader(@"stations.txt");
 
@@ -32,10 +32,11 @@ namespace TrainSimulator
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split('|');
-                listOfTrains.Add(new Station(int.Parse(words[0]), words[1],  bool.Parse(words[2])));
+                listOfStations.Add(new Station(int.Parse(words[0]), words[1],  bool.Parse(words[2])));
             }
 
             file.Close();
+            return listOfStations;
         }
     }
 }

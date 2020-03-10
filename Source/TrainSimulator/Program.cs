@@ -9,13 +9,11 @@ namespace TrainSimulator
         static void Main(string[] args)
         {
 
-            Train.GetTrains();
-            Schedule.GetSchedule();
-            Station.GetStation();
+            List <Train> trains = Train.GetTrains();
+            List <Schedule> schedules = Schedule.GetSchedule();
+            List <Station> stations = Station.GetStation();
+            List <Passenger> passengers = Passenger.GetPassenger();
 
-            //string[] trains = File.ReadAllLines("trains.txt");
-            //string[] stations = File.ReadAllLines("stations.txt");
-            //string[] tidtabell = File.ReadAllLines("timetable.txt");
 
             //var tid = new Schedule(tidtabell);
             //var train = new Train(trains);
@@ -23,6 +21,7 @@ namespace TrainSimulator
             var time = new TimeSpan(10, 19, 00);
             var addMinute = TimeSpan.FromMinutes(01);
 
+            
 
             //    for (int i = 0; i <= 40; i++)
             //    {
