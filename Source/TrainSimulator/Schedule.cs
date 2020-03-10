@@ -10,12 +10,12 @@ namespace TrainSimulator
 
         public int TrainId { get; set; }
         public int StationId { get; set; }
-        public TimeSpan DepartureTime { get; set; }
-        public TimeSpan ArrivalTime { get; set; }
+        public string DepartureTime { get; set; }
+        public string ArrivalTime { get; set; }
 
 
 
-        public Schedule(int trainId, int stationId, TimeSpan departureTime, TimeSpan arrivalTime)
+        public Schedule(int trainId, int stationId, string departureTime, string arrivalTime)
         {
             TrainId = trainId;
             StationId = stationId;
@@ -31,10 +31,11 @@ namespace TrainSimulator
             List<object> listOfSchedules = new List<object>();
             StreamReader file =
                 new StreamReader(@"timetable.txt");
+            file.ReadLine();
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');
-                listOfSchedules.Add(new Schedule(int.Parse(words[0]), int.Parse(words[1]), TimeSpan.Parse(words[2]), TimeSpan.Parse(words[3])));
+                listOfSchedules.Add(new Schedule(int.Parse(words[0]), int.Parse(words[1]), words[2], words[3]));
             }
 
             file.Close();

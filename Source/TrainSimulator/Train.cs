@@ -19,7 +19,6 @@ namespace TrainSimulator
             MaxSpeed = maxSpeed;
             Operated = operated;
 
-
         }
 
        public static void GetTrains()
@@ -29,6 +28,7 @@ namespace TrainSimulator
             List<object> listOfTrains = new List<object>();
             StreamReader file =
                 new StreamReader(@"trains.txt");
+            file.ReadLine();
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');

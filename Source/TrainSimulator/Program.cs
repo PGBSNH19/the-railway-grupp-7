@@ -24,25 +24,25 @@ namespace TrainSimulator
             var addMinute = TimeSpan.FromMinutes(01);
 
 
-            for (int i = 0; i <= 40; i++)
-            {
-                if (time.ToString() == tid.arrivalTime.ToString())
-                {
-                    Console.WriteLine(time.ToString() + " The Train has arrived to the destination");
-                }
-                else if (time.ToString() == tid.departureTime.ToString())
-                {
-                    Console.WriteLine(time.ToString() + " The Train has left the station");
-                }
-                else
-                {
-                    Console.WriteLine(time.ToString());
-                }
+            //    for (int i = 0; i <= 40; i++)
+            //    {
+            //        if (time.ToString() == arrivalTime.ToString())
+            //        {
+            //            Console.WriteLine(time.ToString() + " The Train has arrived to the destination");
+            //        }
+            //        else if (time.ToString() == tid.departureTime.ToString())
+            //        {
+            //            Console.WriteLine(time.ToString() + " The Train has left the station");
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine(time.ToString());
+            //        }
 
-                time += addMinute;
-                System.Threading.Thread.Sleep(500);
+            //        time += addMinute;
+            //        System.Threading.Thread.Sleep(500);
 
-            }
+            //    }
         }
 
     }

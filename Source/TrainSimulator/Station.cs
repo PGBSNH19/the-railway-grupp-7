@@ -27,6 +27,8 @@ namespace TrainSimulator
             List<object> listOfTrains = new List<object>();
             StreamReader file =
                 new StreamReader(@"stations.txt");
+
+            file.ReadLine();
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split('|');
