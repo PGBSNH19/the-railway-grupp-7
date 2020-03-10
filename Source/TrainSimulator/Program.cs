@@ -51,25 +51,25 @@ namespace TrainSimulator
             }
 
 
-            var time = new timespan(10, 19, 00);
-            var addminute = timespan.fromminutes(01);
+            //var time = new timespan(10, 19, 00);
+            //var addminute = timespan.fromminutes(01);
 
-            var tid = schedules[0].departuretime + ":00";
+            //var tid = schedules[0].departuretime + ":00";
 
-            for (int i = 0; i <= 60; i++)
-            {
-                if (time.tostring() == tid)
-                {
-                    console.writeline(tid + " nu startar tåget");
-                }
-                else
-                {
-                    console.writeline(time.tostring());
-                }
+            //for (int i = 0; i <= 60; i++)
+            //{
+            //    if(time.tostring() == tid)
+            //    {
+            //        console.writeline(tid + " nu startar tåget");
+            //    }
+            //    else
+            //    {
+            //        console.writeline(time.tostring());
+            //    }
 
-                time += addminute;
-                system.threading.thread.sleep(500);
-            }
+            //    time += addminute;
+            //    system.threading.thread.sleep(500);
+            //}
 
 
 
