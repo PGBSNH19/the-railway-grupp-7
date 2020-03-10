@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace TrainSimulator
 {
@@ -8,14 +9,17 @@ namespace TrainSimulator
         static void Main(string[] args)
         {
 
+            Train.GetTrains();
+            Schedule.GetSchedule();
+            Station.GetStation();
 
-            string[] trains = File.ReadAllLines("trains.txt");
-            string[] stations = File.ReadAllLines("stations.txt");
-            string[] tidtabell = File.ReadAllLines("timetable.txt");
+            //string[] trains = File.ReadAllLines("trains.txt");
+            //string[] stations = File.ReadAllLines("stations.txt");
+            //string[] tidtabell = File.ReadAllLines("timetable.txt");
 
-            var tid = new Schedule(tidtabell);
-            var train = new Train(trains);
-            var station = new Station(stations);
+            //var tid = new Schedule(tidtabell);
+            //var train = new Train(trains);
+            //var station = new Station(stations);
             var time = new TimeSpan(10, 19, 00);
             var addMinute = TimeSpan.FromMinutes(01);
 
@@ -42,23 +46,27 @@ namespace TrainSimulator
         }
 
     }
-    public class Schedule
-    {
-        public int traindId { get; }
-        public int stationId { get; }
-        public TimeSpan departureTime { get; }
-        public TimeSpan arrivalTime { get; }
-
-        public Schedule(string[] scheduleArray)
-        {
-            string[] train2 = scheduleArray[1].Split(",");
-            traindId = int.Parse(train2[0]);
-            stationId = int.Parse(train2[1]);
-            departureTime = TimeSpan.Parse(train2[2]);
-            arrivalTime = TimeSpan.Parse(train2[3]);
+    //public class Schedule
+    //{
 
 
-        }
-    }
+    //    public int traindId { get; }
+    //    public int stationId { get; }
+    //    public TimeSpan departureTime { get; }
+    //    public TimeSpan arrivalTime { get; }
+
+
+
+    //    public Schedule(int trainId, int stationId, TimeSpan departureTime, TimeSpan arrivalTime)
+    //    {
+    //        //string[] train2 = scheduleArray[1].Split(",");
+    //        traindId = int.Parse(train2[0]);
+    //        stationId = int.Parse(train2[1]);
+    //        departureTime = TimeSpan.Parse(train2[2]);
+    //        arrivalTime = TimeSpan.Parse(train2[3]);
+
+
+    //    }
+    //}
 
 }

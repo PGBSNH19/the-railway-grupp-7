@@ -12,24 +12,30 @@ namespace TrainSimulator
         public int MaxSpeed { get; set; }
         public bool Operated { get; set; }
 
-        string[] trains = File.ReadAllLines("trains.txt");
-
-        public Train(string[] trains)
+        public Train(int id, string name, int maxSpeed, bool operated)
         {
-            this.trains = trains;
+            ID = id;
+            Name = name;
+            MaxSpeed = maxSpeed;
+            Operated = operated;
+
+
         }
 
-        public Train LoadTrain()
+       public static void GetTrains()
         {
-            foreach (string line in trains)
+
+            string line;
+            List<object> listOfTrains = new List<object>();
+            StreamReader file =
+                new StreamReader(@"trains.txt");
+            while ((line = file.ReadLine()) != null)
             {
-                string[] parts = line.Split(',');
-                        
-                
+                string[] words = line.Split(',');
+                listOfTrains.Add(new Train(int.Parse(words[0]), words[1], int.Parse(words[2]), bool.Parse(words[3])));
             }
-            
-            return this;
+
+            file.Close();
         }
-       
     }
 }
