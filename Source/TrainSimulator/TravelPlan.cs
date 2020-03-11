@@ -7,30 +7,39 @@ namespace TrainSimulator
 {
     class TravelPlan
     {
+        List<Train> trains;
 
-        public static void Start()
+        public TravelPlan(List<Train> trains)
+        {
+            this.trains = trains;
+        }
+
+
+
+        public void Start()
         {
             
-            
-            Thread train1 = new Thread(Depart);
-            train1.Start();
+
+
+            Thread planerthread = new Thread(Depart);
+            planerthread.Start();
 
 
             void Depart()
             {
 
-                int distanceTravelled = 0;
-                for (int i = 0; i < 10; i++)
+                //int distanceTravelled = 0;
+                //for (int i = 0; i < 10; i++)
+                // start all trains
+                trains[0].Start();
+                while (true)
                 {
-                    distanceTravelled += 1;
                     Thread.Sleep(500);
-                    Console.WriteLine(distanceTravelled);
-                }
-
-                if (distanceTravelled == 10)
-                {
-                    Console.WriteLine();
-                    Console.ReadLine();
+                    // check distance of all trains
+                    var traindistance = trains[0].Distance;
+                    //if train disance == destination stop train
+                    //if all trains are stoped, break
+                    Console.WriteLine(traindistance);
                 }
 
             }

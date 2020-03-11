@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace TrainSimulator
 {
@@ -19,7 +20,29 @@ namespace TrainSimulator
             MaxSpeed = maxSpeed;
             Operated = operated;
             PassengersInTrain = new List<Passenger>();
+            thread = new Thread(Drive);
+
         }
+        private Thread thread;
+
+        void Drive()
+        {
+            while (true)
+            {
+                Thread.Sleep(200);
+                // calculate distance
+            }
+        }
+
+        internal void Start()
+        {
+            thread.Start();
+        }
+
+        /*
+* thrad(drive);
+* 
+* */
 
         public List<Passenger> LoadPassengers(List<Passenger> PassengersInStation)
         {
