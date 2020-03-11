@@ -13,7 +13,9 @@ namespace TrainSimulator
         public int MaxSpeed { get; set; }
         public bool Operated { get; set; }
         public List<Passenger> PassengersInTrain { get; set; }
+        public int Position { get; set; }
         public int DistanceTravelled { get; set; }
+        private int timeTravelled = 0;
         public Train(int id, string name, int maxSpeed, bool operated)
         {
             ID = id;
@@ -29,20 +31,29 @@ namespace TrainSimulator
         public void Drive()
         {
  
-            var addminute = TimeSpan.FromMinutes(01);
-            int timeTravelled = 0;
             while (true)
             {
                 Thread.Sleep(200);
-                timeTravelled += 5;
+                timeTravelled += 1;
 
                 DistanceTravelled = MaxSpeed * timeTravelled;
+
+                if (DistanceTravelled == 100)
+                    break;
             }
         }
 
         internal void Start()
         {
             thread.Start();
+        }
+
+        internal void Stop()
+        {
+            thread.Abort();
+            DistanceTravelled = 0;
+            timeTravelled = 0;
+            Operated = false;
         }
 
         /*

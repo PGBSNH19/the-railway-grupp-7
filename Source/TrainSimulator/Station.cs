@@ -18,6 +18,7 @@ namespace TrainSimulator
             StationName = stationName;
             EndStation = endStation;
             PassengersInStation = new List<Passenger>();
+            
 
         }
 

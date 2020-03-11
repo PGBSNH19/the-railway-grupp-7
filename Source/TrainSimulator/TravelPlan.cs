@@ -10,11 +10,14 @@ namespace TrainSimulator
         List<Train> trains;
         List<Schedule> schedules;
         List<Station> stations;
+        List<TrainTrack> trainTracks;
 
-        public TravelPlan(List<Train> trains, List<Schedule> schedules, List<Station> stations)
+        public TravelPlan(List<Train> trains, List<Schedule> schedules, List<Station> stations, List<TrainTrack> trainTracks)
         {
             this.trains = trains;
             this.schedules = schedules;
+            this.stations = stations;
+            this.trainTracks = trainTracks;
         }
 
 
@@ -31,13 +34,23 @@ namespace TrainSimulator
             void Depart()
             {
 
-                //int distanceTravelled = 0;
-                //for (int i = 0; i < 10; i++)
-                // start all trains
-                trains[0].Start();
+                foreach (var train in trains)
+                {
+                    train.Start();
+                }
+
                 while (true)
                 {
                     Thread.Sleep(500);
+
+                    foreach (var train in trains)
+                    {
+
+                     if (train.DistanceTravelled == 100)
+                        train.Stop();
+
+                    }
+
                     // check distance of all trains
                    // var traindistance = trains[0].Distance;
                     //if train disance == destination stop train
