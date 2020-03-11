@@ -14,7 +14,9 @@ namespace TrainSimulator
             List<Schedule> schedules = Schedule.GetSchedule();
             List<Station> stations = Station.GetStation();
             List<Passenger> passengers = Passenger.GetPassenger();
-            TravelPlan.Start();
+            //TravelPlan.Start();
+
+            trains[0].Drive();
 
             //var tid = new Schedule(tidtabell);
             //var train = new Train(trains);
@@ -24,8 +26,7 @@ namespace TrainSimulator
 
 
 
-            //var time = new timespan(10, 19, 00);
-            //var addminute = timespan.fromminutes(01);
+            
 
             //var tid = schedules[0].departuretime + ":00";
 

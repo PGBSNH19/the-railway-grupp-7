@@ -12,7 +12,7 @@ public class Passenger
         PassengerName = passengerName;
 
     }
-
+  
     public static List<Passenger> GetPassenger()
     {
 

@@ -8,10 +8,13 @@ namespace TrainSimulator
     class TravelPlan
     {
         List<Train> trains;
+        List<Schedule> schedules;
+        List<Station> stations;
 
-        public TravelPlan(List<Train> trains)
+        public TravelPlan(List<Train> trains, List<Schedule> schedules, List<Station> stations)
         {
             this.trains = trains;
+            this.schedules = schedules;
         }
 
 
@@ -36,10 +39,10 @@ namespace TrainSimulator
                 {
                     Thread.Sleep(500);
                     // check distance of all trains
-                    var traindistance = trains[0].Distance;
+                   // var traindistance = trains[0].Distance;
                     //if train disance == destination stop train
                     //if all trains are stoped, break
-                    Console.WriteLine(traindistance);
+                    //Console.WriteLine(traindistance);
                 }
 
             }
