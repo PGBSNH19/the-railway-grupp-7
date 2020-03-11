@@ -1,6 +1,2 @@
-ID, Length, Switch, StationID, CrossingOpen
-1,10,true, null, null
-2,10, false, null, true
-3,10, false, 2,false
-
-
+ID, Length
+1, 100

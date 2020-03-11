@@ -21,15 +21,15 @@ namespace TrainSimulator
 
         }
 
-        public List<Passenger> LoadPassengersToStation(List<Passenger> passengers)
-        {
-            for (int i = 0; i =< 34; i++)
-            {
-                PassengersInStation.Add(passengers[i]);
-            }
+        //public List<Passenger> LoadPassengersToStation(List<Passenger> passengers)
+        //{
+        //    for (int i = 0; i < 34; i++)
+        //    {
+        //        PassengersInStation.Add(passengers[i]);
+        //    }
 
-            return PassengersInStation;
-        }
+        //    return PassengersInStation;
+        //}
 
         public static List<Station> GetStation()
         {

@@ -10,45 +10,18 @@ namespace TrainSimulator
         static void Main(string[] args)
         {
 
-            List <Train> trains = Train.GetTrains();
-            List <Schedule> schedules = Schedule.GetSchedule();
-            List <Station> stations = Station.GetStation();
-            List <Passenger> passengers = Passenger.GetPassenger();
-
+            List<Train> trains = Train.GetTrains();
+            List<Schedule> schedules = Schedule.GetSchedule();
+            List<Station> stations = Station.GetStation();
+            List<Passenger> passengers = Passenger.GetPassenger();
+            TravelPlan.Start();
 
             //var tid = new Schedule(tidtabell);
             //var train = new Train(trains);
             //var station = new Station(stations);
 
-            stations[0].LoadPassengersToStation(passengers);
+            //stations[0].LoadPassengersToStation(passengers);
 
-            Thread t = new Thread(Print1);
-            t.Start();
-
-            for (int i = 0; i < 20; i++)
-            {
-                Thread.Sleep(trains[0].MaxSpeed + 1000);
-
-                Console.WriteLine(trains[0].MaxSpeed);
-                if (schedules[0].DepartureTime == "10:59:00")
-                {
-                    t.Abort();
-                    Console.WriteLine(trains[0].Name + " tåget har anlänt på stationen: " + stations[0].StationName);
-                    
-                }
-            }
-
-            Console.ReadLine();
-
-            void Print1()
-            {
-                for (int i = 0; i < 20; i++)
-                {
-                    
-                    Thread.Sleep(trains[2].MaxSpeed + 1000);
-                    Console.WriteLine(trains[1].MaxSpeed);
-                }
-            }
 
 
             //var time = new timespan(10, 19, 00);
@@ -95,27 +68,6 @@ namespace TrainSimulator
         }
 
     }
-    //public class Schedule
-    //{
-
-
-    //    public int traindId { get; }
-    //    public int stationId { get; }
-    //    public TimeSpan departureTime { get; }
-    //    public TimeSpan arrivalTime { get; }
-
-
-
-    //    public Schedule(int trainId, int stationId, TimeSpan departureTime, TimeSpan arrivalTime)
-    //    {
-    //        //string[] train2 = scheduleArray[1].Split(",");
-    //        traindId = int.Parse(train2[0]);
-    //        stationId = int.Parse(train2[1]);
-    //        departureTime = TimeSpan.Parse(train2[2]);
-    //        arrivalTime = TimeSpan.Parse(train2[3]);
-
-
-    //    }
-    //}
-
 }
+
+
