@@ -11,17 +11,28 @@ namespace TrainSimulator
         public string Name { get; set; }
         public int MaxSpeed { get; set; }
         public bool Operated { get; set; }
-
+        public List<Passenger> PassengersInTrain { get; set; }
         public Train(int id, string name, int maxSpeed, bool operated)
         {
             ID = id;
             Name = name;
             MaxSpeed = maxSpeed;
             Operated = operated;
-
+            PassengersInTrain = new List<Passenger>();
         }
 
-       public static List<Train> GetTrains()
+        public List<Passenger> LoadPassengers(List<Passenger> PassengersInStation)
+        {
+            foreach (var person in PassengersInStation )
+            {
+                PassengersInTrain.Add(person);
+                
+            }
+
+            return PassengersInTrain;
+        }
+
+        public static List<Train> GetTrains()
         {
 
             string line;

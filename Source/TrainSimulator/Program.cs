@@ -13,14 +13,14 @@ namespace TrainSimulator
             List <Train> trains = Train.GetTrains();
             List <Schedule> schedules = Schedule.GetSchedule();
             List <Station> stations = Station.GetStation();
-            //List <Passenger> passengers = Passenger.GetPassenger();
+            List <Passenger> passengers = Passenger.GetPassenger();
 
 
             //var tid = new Schedule(tidtabell);
             //var train = new Train(trains);
             //var station = new Station(stations);
 
-
+            stations[0].LoadPassengersToStation(passengers);
 
             Thread t = new Thread(Print1);
             t.Start();
@@ -30,7 +30,7 @@ namespace TrainSimulator
                 Thread.Sleep(trains[0].MaxSpeed + 1000);
 
                 Console.WriteLine(trains[0].MaxSpeed);
-                if (schedules[0].DepartureTime == "10:59")
+                if (schedules[0].DepartureTime == "10:59:00")
                 {
                     t.Abort();
                     Console.WriteLine(trains[0].Name + " tåget har anlänt på stationen: " + stations[0].StationName);

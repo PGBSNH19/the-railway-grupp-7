@@ -23,7 +23,7 @@ public class Passenger
 
         while ((line = file.ReadLine()) != null)
         {
-            string[] words = line.Split(',');
+            string[] words = line.Split(';');
             listOfPassengers.Add(new Passenger(int.Parse(words[0]), words[1]));
         }
 
