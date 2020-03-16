@@ -23,24 +23,30 @@ namespace TrainSimulator
 
 
         public void Start()
-        {          
-            
+        {
+
             Thread planerthread = new Thread(Depart);
             planerthread.Start();
 
 
             void Depart()
             {
+                //logik för att starta och stoppa en tråd istället för thread.Abort();
+                //bool stopped = false;
+                //while (!stopped)
+                //{
 
-                
+                //}
+
 
                 foreach (var train in trains)
                 {
-                 if (train.Operated == true)
+                    if (train.Operated == true)
                     {
-                    train.Start();
+                        train.Start();
                     }
                 }
+
 
                 while (true)
                 {
@@ -49,13 +55,14 @@ namespace TrainSimulator
                     foreach (var train in trains)
                     {
 
-                     if (train.DistanceTravelled == 100)
-                        train.Stop();
-
+                        if (train.DistanceTravelled == 100)
+                        {
+                            train.Stop();
+                        }
                     }
 
                     // check distance of all trains
-                   // var traindistance = trains[0].Distance;
+                    // var traindistance = trains[0].Distance;
                     //if train disance == destination stop train
                     //if all trains are stoped, break
                     //Console.WriteLine(traindistance);
