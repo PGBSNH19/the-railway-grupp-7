@@ -44,6 +44,7 @@ namespace TrainSimulator
                     if (train.Operated == true)
                     {
                         train.Start();
+
                     }
                 }
 
@@ -54,10 +55,15 @@ namespace TrainSimulator
 
                     foreach (var train in trains)
                     {
-
-                        if (train.DistanceTravelled == 100)
+                        if (train.Operated == true)
                         {
-                            train.Stop();
+                            Console.WriteLine(train.Name + " has traveled " + train.DistanceTravelled);
+
+                            if (train.DistanceTravelled >= 800)
+                            {
+                                train.Stop();
+                            }
+
                         }
                     }
 

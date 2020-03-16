@@ -26,10 +26,8 @@ namespace TrainSimulator
             //var station = new Station(stations);
 
             //stations[0].LoadPassengersToStation(passengers);
-
-
-
             
+                       
 
             //var tid = schedules[0].departuretime + ":00";
 

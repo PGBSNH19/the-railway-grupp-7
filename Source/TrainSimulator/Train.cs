@@ -30,7 +30,7 @@ namespace TrainSimulator
 
         public void Drive()
         {
- 
+
             while (true)
             {
                 Thread.Sleep(200);
@@ -38,8 +38,11 @@ namespace TrainSimulator
 
                 DistanceTravelled = MaxSpeed * timeTravelled;
 
-                if (DistanceTravelled == 100)
-                    break;
+                //if (DistanceTravelled == 100)
+                //{
+
+                //}
+                //    break;
             }
         }
 
@@ -48,16 +51,19 @@ namespace TrainSimulator
             thread.Start();
             Console.WriteLine("Is the thread alive? " + thread.IsAlive);
 
+
         }
 
         internal void Stop()
         {
-            Console.WriteLine("Is the thread alive? " + thread.IsAlive);
             
-            thread.Abort();
+            Console.WriteLine("thread should now terminate. Status of thread.IsAlive: " + thread.IsAlive);
+
             DistanceTravelled = 0;
             timeTravelled = 0;
             Operated = false;
+            thread.Join();
+            Console.WriteLine("This text should not show if the thread is terminated correctly?");
         }
 
         /*
@@ -67,10 +73,10 @@ namespace TrainSimulator
 
         public List<Passenger> LoadPassengers(List<Passenger> PassengersInStation)
         {
-            foreach (var person in PassengersInStation )
+            foreach (var person in PassengersInStation)
             {
                 PassengersInTrain.Add(person);
-                
+
             }
 
             return PassengersInTrain;
