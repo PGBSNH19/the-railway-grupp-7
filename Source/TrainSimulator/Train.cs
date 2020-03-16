@@ -46,10 +46,14 @@ namespace TrainSimulator
         internal void Start()
         {
             thread.Start();
+            Console.WriteLine("Is the thread alive? " + thread.IsAlive);
+
         }
 
         internal void Stop()
         {
+            Console.WriteLine("Is the thread alive? " + thread.IsAlive);
+
             thread.Abort();
             DistanceTravelled = 0;
             timeTravelled = 0;

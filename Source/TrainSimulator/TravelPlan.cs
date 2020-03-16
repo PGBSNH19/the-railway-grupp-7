@@ -23,10 +23,8 @@ namespace TrainSimulator
 
 
         public void Start()
-        {
+        {          
             
-
-
             Thread planerthread = new Thread(Depart);
             planerthread.Start();
 
@@ -34,9 +32,14 @@ namespace TrainSimulator
             void Depart()
             {
 
+                
+
                 foreach (var train in trains)
                 {
+                 if (train.Operated == true)
+                    {
                     train.Start();
+                    }
                 }
 
                 while (true)
