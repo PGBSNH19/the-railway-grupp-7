@@ -49,6 +49,9 @@ namespace TrainSimulator
                 }
 
 
+
+
+
                 while (true)
                 {
                     Thread.Sleep(500);
@@ -57,8 +60,15 @@ namespace TrainSimulator
                     {
                         if (train.Operated == true)
                         {
-                            Console.WriteLine(train.Name + " has traveled " + train.DistanceTravelled);
+                            foreach (var tt in trainTracks)
+                            {
+                                Console.WriteLine(train.Name + " has traveled " + train.DistanceTravelled + " km");
+                                if (train.DistanceTravelled >= tt.Length) //traintrack.length * 3 för att få station 2.. typ?.
+                                {
+                                    Console.WriteLine(train.Name + "is at station " + tt.Id); //traintrack.stationID
+                                }
 
+                            }
                             if (train.DistanceTravelled >= 800)
                             {
                                 train.Stop();
