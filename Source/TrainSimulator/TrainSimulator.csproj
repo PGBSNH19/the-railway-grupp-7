@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="Data\controllerlog.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Data\passengers.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

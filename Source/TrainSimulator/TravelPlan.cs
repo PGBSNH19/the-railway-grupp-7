@@ -232,6 +232,7 @@ namespace TrainSimulator
                     {
                         track.Switch2Left = true;
                         Console.WriteLine("Second Switch is switched to it's left position");
+                        ControllerLog.LogInfo("Second switch is switched to it's left position");
                         train.trainState = TrainState.onWayToMiddleStation;
                     }
                     break;
