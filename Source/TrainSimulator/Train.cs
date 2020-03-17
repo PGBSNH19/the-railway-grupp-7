@@ -63,7 +63,7 @@ namespace TrainSimulator
 
             while (true)
             {
-                Thread.Sleep(800);
+                Thread.Sleep(80);
                 try
                 {
                    if(Operated == true)
@@ -88,12 +88,13 @@ namespace TrainSimulator
 
         internal void Stop()
         {
-            Console.WriteLine("thread should now terminate. Status of thread.IsAlive: " + thread.IsAlive);
-
-            //DistanceTravelled = 0;
-            //timeTravelled = 0;
             Operated = false;
-            thread.Join();
+        }
+        internal void EndStop()
+        {
+            Console.WriteLine("Thread should now terminate.");
+            Operated = false;
+            thread.Abort();
             Console.WriteLine("This text should not show if the thread is terminated correctly");
         }
 
