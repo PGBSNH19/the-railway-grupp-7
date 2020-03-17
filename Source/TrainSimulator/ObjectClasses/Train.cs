@@ -63,14 +63,19 @@ namespace TrainSimulator
 
             while (true)
             {
-                Thread.Sleep(80);
+                Thread.Sleep(200);
                 try
                 {
                    if(Operated == true)
                     {
+                        
                         DistanceTravelled = (MaxSpeed/60) * timeTravelled;
-                        Console.WriteLine(this.Name + " has traveled " + this.DistanceTravelled + " km");
-                        timeTravelled ++;
+
+                        Console.WriteLine(this.Name + ": has traveled " + this.DistanceTravelled + " km");
+                        Console.WriteLine();
+
+                        timeTravelled++;
+
                     }
                 }
                 catch (Exception)
@@ -92,10 +97,12 @@ namespace TrainSimulator
         }
         internal void EndStop()
         {
-            Console.WriteLine("Thread should now terminate.");
+            Console.WriteLine("This thread will now terminate");
+            ControllerLog.LogInfo("Thread will now terminate");
             Operated = false;
             thread.Abort();
             Console.WriteLine("This text should not show if the thread is terminated correctly");
+            ControllerLog.LogInfo("This text should not show if the thread is terminated correctly");
         }
 
         public List<Passenger> LoadPassengers(List<Passenger> PassengersInStation)

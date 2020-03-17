@@ -5,7 +5,7 @@ using System.IO;
 
 namespace TrainSimulator
 {
-    class TrainTrack
+   public class TrainTrack
     {
         public int Id { get; private set; }
         public int StartStationId { get; private set; }

@@ -17,8 +17,7 @@ namespace TrainSimulator
             List<Passenger> passengers = Passenger.GetPassenger();
             List<TrainTrack> tracks = TrainTrack.GetTrainTracks();
 
-            TravelPlan travelPlan = new TravelPlan(trains, schedules, stations, tracks, passengers).Start();
-
+            TravelPlan travelPlan = new TravelPlan(schedules, stations, tracks, passengers).SetTrain(trains).Start();
 
             Console.ReadKey();
         }

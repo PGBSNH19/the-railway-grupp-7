@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+
 namespace TrainSimulator
 {
-    class ControllerLog
+    public class ControllerLog
     {
-
 
         public static void LogInfo(string info)
         {
 
-            string controllerLogFilePath = @".\Data\controllerlog.txt";
+            string controllerLogFilePath = @"./Data/controllerlog.txt";
 
-            StreamWriter sw = File.CreateText(controllerLogFilePath);
+            StreamWriter sw = File.AppendText(controllerLogFilePath);
 
             sw.WriteLine(info);
 
