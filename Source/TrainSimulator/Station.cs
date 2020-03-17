@@ -37,7 +37,7 @@ namespace TrainSimulator
             string line;
             List<Station> listOfStations = new List<Station>();
             StreamReader file =
-                new StreamReader(@"stations.txt");
+                new StreamReader(@"./Data/stations.txt");
 
             file.ReadLine();
             while ((line = file.ReadLine()) != null)

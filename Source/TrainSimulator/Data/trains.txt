@@ -1,0 +1,5 @@
+Id,Name,MaxSpeed,TrainTrackId
+1,Flying Scotsman,100,1
+2,Golden Arrow,120,1
+3,Lapplandståget,80,2
+4,Norrlandståget,72,2

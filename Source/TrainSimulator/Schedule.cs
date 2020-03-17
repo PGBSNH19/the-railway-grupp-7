@@ -30,7 +30,7 @@ namespace TrainSimulator
             string line;
             List<Schedule> listOfSchedules = new List<Schedule>();
             StreamReader file =
-                new StreamReader(@"timetable.txt");
+                new StreamReader(@"./Data/timetable.txt");
             file.ReadLine();
             while ((line = file.ReadLine()) != null)
             {

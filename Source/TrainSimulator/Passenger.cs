@@ -19,7 +19,7 @@ public class Passenger
         string line;
         List<Passenger> listOfPassengers = new List<Passenger>();
         StreamReader file =
-            new StreamReader(@"passengers.txt");
+            new StreamReader(@"./Data/passengers.txt");
 
         while ((line = file.ReadLine()) != null)
         {

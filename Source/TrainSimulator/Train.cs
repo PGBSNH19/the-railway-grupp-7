@@ -8,22 +8,52 @@ namespace TrainSimulator
 {
     public class Train
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public int MaxSpeed { get; set; }
-        public bool Operated { get; set; }
+        public int ID { get; private set; }
+        public string Name { get; private set; }
+        public float MaxSpeed { get; private set; }
+        public bool Operated { get; private set; }
         public List<Passenger> PassengersInTrain { get; set; }
-        public int Position { get; set; }
-        public int DistanceTravelled { get; set; }
+        public int TrainTrackId { get; private set; }
+        public TrainState trainState { get; set; }
         private int timeTravelled = 0;
-        public Train(int id, string name, int maxSpeed, bool operated)
+        private float distanceTravelled;
+
+        public float DistanceTravelled
+        {
+            get
+            {
+                lock (this)
+                {
+                    return distanceTravelled;
+                }
+            }
+            private set
+            {
+                lock (this)
+                {
+                    distanceTravelled = value;
+                }
+            }
+        }
+
+
+        public Train()
+        {
+            thread = new Thread(Drive);
+            thread.IsBackground = true;
+            thread.Start();
+        }
+        public Train(int id, string name, int maxSpeed, int trainTrackId)
         {
             ID = id;
             Name = name;
             MaxSpeed = maxSpeed;
-            Operated = operated;
+            TrainTrackId = trainTrackId;
             PassengersInTrain = new List<Passenger>();
+
             thread = new Thread(Drive);
+            thread.IsBackground = true;
+            thread.Start();
 
         }
         private Thread thread;
@@ -33,43 +63,39 @@ namespace TrainSimulator
 
             while (true)
             {
-                Thread.Sleep(200);
-                timeTravelled += 1;
+                Thread.Sleep(800);
+                try
+                {
+                   if(Operated == true)
+                    {
+                        DistanceTravelled = (MaxSpeed/60) * timeTravelled;
+                        Console.WriteLine(this.Name + " has traveled " + this.DistanceTravelled + " km");
+                        timeTravelled ++;
+                    }
+                }
+                catch (Exception)
+                {
 
-                DistanceTravelled = MaxSpeed * timeTravelled;
-
-                //if (DistanceTravelled == 100)
-                //{
-
-                //}
-                //    break;
+                    break;
+                }
             }
         }
 
         internal void Start()
         {
-            thread.Start();
-            Console.WriteLine("Is the thread alive? " + thread.IsAlive);
-
-
+            Operated = true;
         }
 
         internal void Stop()
         {
-            
             Console.WriteLine("thread should now terminate. Status of thread.IsAlive: " + thread.IsAlive);
 
-            DistanceTravelled = 0;
-            timeTravelled = 0;
+            //DistanceTravelled = 0;
+            //timeTravelled = 0;
             Operated = false;
             thread.Join();
-            Console.WriteLine("This text should not show if the thread is terminated correctly?");
+            Console.WriteLine("This text should not show if the thread is terminated correctly");
         }
-
-        /*
-* thrad(drive);
-* 
-* */
 
         public List<Passenger> LoadPassengers(List<Passenger> PassengersInStation)
         {
@@ -88,12 +114,12 @@ namespace TrainSimulator
             string line;
             List<Train> listOfTrains = new List<Train>();
             StreamReader file =
-                new StreamReader(@"trains.txt");
+                new StreamReader(@"./Data/trains.txt");
             file.ReadLine();
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');
-                listOfTrains.Add(new Train(int.Parse(words[0]), words[1], int.Parse(words[2]), bool.Parse(words[3])));
+                listOfTrains.Add(new Train(int.Parse(words[0]), words[1], int.Parse(words[2]), int.Parse(words[3])));
             }
 
             file.Close();

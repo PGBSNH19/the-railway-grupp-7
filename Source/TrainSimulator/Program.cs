@@ -10,15 +10,16 @@ namespace TrainSimulator
         static void Main(string[] args)
         {
 
+
             List<Train> trains = Train.GetTrains();
             List<Schedule> schedules = Schedule.GetSchedule();
             List<Station> stations = Station.GetStation();
             List<Passenger> passengers = Passenger.GetPassenger();
             List<TrainTrack> tracks = TrainTrack.GetTrainTracks();
-            TravelPlan plan1 = new TravelPlan(trains, schedules, stations, tracks);
 
-            plan1.Start();
+            TravelPlan travelPlan = new TravelPlan(trains, schedules, stations, tracks).Start();
 
+            Console.ReadKey();
 
 
             //var tid = new Schedule(tidtabell);
