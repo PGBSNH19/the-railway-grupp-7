@@ -24,6 +24,18 @@ namespace TrainSimulator
             this.stations = stations;
             this.trainTracks = trainTracks;
             this.passenger = passengers;
+
+            var passengerHalfCount = (passengers.Count / 2);
+
+            for (int i = 0; i < passengerHalfCount; i++)
+            {
+                stations[0].PassengersInStation.Add(passengers.ElementAt(i));
+            }
+
+            for (int i = passengerHalfCount; i < passengers.Count; i++)
+            {
+                stations[2].PassengersInStation.Add(passengers.ElementAt(i));
+            }
         }
 
 
@@ -66,39 +78,6 @@ namespace TrainSimulator
                         }
                     }
                 }
-
-                //while (true)
-                //{
-                //    Thread.Sleep(500);
-
-                //    foreach (var train in trains)
-                //    {
-                //        if (train.Operated == true)
-                //        {
-                //            foreach (var tt in trainTracks)
-                //            {
-                //                Console.WriteLine(train.Name + " has traveled " + train.DistanceTravelled + " km");
-                //                if (train.DistanceTravelled >= tt.Length) //traintrack.length * 3 för att få station 2.. typ?.
-                //                {
-                //                    Console.WriteLine(train.Name + "is at station " + tt.Id); //traintrack.stationID
-                //                }
-
-                //            }
-                //            if (train.DistanceTravelled >= 800)
-                //            {
-                //                train.Stop();
-                //            }
-
-                //        }
-                //    }
-
-                //    // check distance of all trains
-                //    // var traindistance = trains[0].Distance;
-                //    //if train disance == destination stop train
-                //    //if all trains are stoped, break
-                //    //Console.WriteLine(traindistance);
-                //}
-
             }
             return this;
         }
@@ -161,16 +140,16 @@ namespace TrainSimulator
                         train.trainState = TrainState.atMiddleStation;
                         train.Stop();
 
-                        var passengerCount = (train.PassengersInTrain.Count / 2);
+                        var passengersOnboard = (train.PassengersInTrain.Count/2);
 
-                        for (int i = 0; i < passengerCount; i++)
+                        for (int i = 0; i < passengersOnboard; i++)
                         {
                             stations[1].PassengersInStation.Add(train.PassengersInTrain.ElementAt(0));
                             train.PassengersInTrain.RemoveAt(0);
                         }
 
                         Console.WriteLine("The train " + train.Name + " has arrived at: " + stations.Where(x => x.ID == track.MiddleStationId).Single().StationName);
-                        Console.WriteLine("Dropped of " + stations[1].PassengersInStation.Count + " passengers at station");
+                        Console.WriteLine("Dropped of " + stations[1].PassengersInStation.Count + " passengers at " + stations[1].StationName);
                     }
                     break;
 
@@ -202,6 +181,16 @@ namespace TrainSimulator
                     {
                         train.trainState = TrainState.atEndStation;
                         Console.WriteLine(train.Name + " has arrived at: " + stations.Where(x => x.ID == track.EndStationId).Single().StationName);
+
+                        var passengersOnboard = train.PassengersInTrain.Count;
+                        for (int i = 0; i < passengersOnboard; i++)
+                        {
+                            stations[2].PassengersInStation.Add(train.PassengersInTrain.ElementAt(0));
+                            train.PassengersInTrain.RemoveAt(0);
+                        }
+                        Console.WriteLine("Dropped of " + stations[2].PassengersInStation.Count + " passengers at " + stations[2].StationName);
+
+
                         train.EndStop();
                     }
 
@@ -219,8 +208,8 @@ namespace TrainSimulator
             {
                 case TrainState.atStartStation:
 
-                    train.PassengersInTrain.AddRange(stations[0].PassengersInStation);
-                    stations[0].PassengersInStation.Clear();
+                    train.PassengersInTrain.AddRange(stations[2].PassengersInStation);
+                    stations[2].PassengersInStation.Clear();
 
                     var timeStartStation = trainTimeTableList.Where(x => x.StationId == track.StartStationId).FirstOrDefault();
 
@@ -254,16 +243,16 @@ namespace TrainSimulator
                         train.trainState = TrainState.atMiddleStation;
                         train.Stop();
 
-                        var passengerCount = (train.PassengersInTrain.Count / 2);
+                        var passengersOnboard = (train.PassengersInTrain.Count / 2);
 
-                        for (int i = 0; i < passengerCount; i++)
+                        for (int i = 0; i < passengersOnboard; i++)
                         {
-                            stations[1].PassengersInStation.Add(train.PassengersInTrain.ElementAt(0));
+                            stations[3].PassengersInStation.Add(train.PassengersInTrain.ElementAt(0));
                             train.PassengersInTrain.RemoveAt(0);
                         }
 
                         Console.WriteLine(train.Name + " has arrived at: " + stations.Where(x => x.ID == track.MiddleStationId).Single().StationName);
-                        Console.WriteLine(train.Name + " dropped of " + stations[1].PassengersInStation.Count + " passengers at station");
+                        Console.WriteLine(train.Name + " dropped of " + stations[3].PassengersInStation.Count + " passengers at " + stations[3].StationName);
                     }
                     break;
 
@@ -315,6 +304,16 @@ namespace TrainSimulator
                     {
                         train.trainState = TrainState.atEndStation;
                         Console.WriteLine(train.Name + " has arrived at: " + stations.Where(x => x.ID == track.EndStationId).Single().StationName);
+
+                        var passengersOnboard = train.PassengersInTrain.Count;
+
+                        for (int i = 0; i < passengersOnboard; i++)
+                        {
+                            stations[0].PassengersInStation.Add(train.PassengersInTrain.ElementAt(0));
+                            train.PassengersInTrain.RemoveAt(0);
+                        }
+                        Console.WriteLine(train.Name + " dropped of " + stations[0].PassengersInStation.Count + " passengers at " + stations[0].StationName);
+
                         train.EndStop();
                     }
 
